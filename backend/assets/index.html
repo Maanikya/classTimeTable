@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='css/login.css') }}">
+
+        <title>Class Time Table System</title>
+    </head>
+
+    <body>
+        <h1> Class Time Table </h1>
+
+        <!-- Teacher Login -->
+        <form class="login-form" action="teaLogin.php" method="post">
+            <p>Teacher Login:</p>
+            <div class="container">
+                <label for="uname"><b>Username:</b></label>
+                <input type="text" class="login-username" placeholder="Enter Username" name="uname" required>
+          
+                <label for="psw"><b>Password:</b></label>
+                <input type="password" class="login-password" placeholder="Enter Password" name="psw" required>
+                <br><br>
+                <button type="submit" name="Login" value="Login" class="login-submit">Login</button>
+            </div>
+        </form><br>
+
+        <!-- Admin Login -->
+        <form class="login-form" action="adminLogin.php" method="post">
+            <p>Admin Login:<br></p>
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" class="login-username" placeholder="Enter Username" name="uname" required>
+            
+                <label for="psw"><b>Password</b></label>
+                <input type="password" class="login-password" placeholder="Enter Password" name="psw" required>
+                <br><br>
+                <button type="submit" name="Login" value="Login" class="login-submit">Login</button>
+            </div>
+        </form><br>
+
+        <!-- Student Login -->
+        <form class="login-form" action="stuLogin.php" method="post">
+            <p>Student Login:<br></p>
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" class="login-username" placeholder="Enter Username" name="uname" required>
+            
+                <label for="psw"><b>Password</b></label>
+                <input type="password" class="login-password" placeholder="Enter Password" name="psw" required>
+                <br><br>
+                <button type="submit" name="Login" value="Login" class="login-submit">Login</button>
+            </div>
+        </form>
+        <div class="underlay-photo"></div>
+        <div class="underlay-black"></div> 
+        </body>
+
+</html>

@@ -64,8 +64,7 @@ p0
 .underlay-photo {
     animation: hue-rotate 6s infinite;
     /*url({{ url_for ('static', filename = '/static/img.png') }})*/
-    background: url('../img/background.jpg')
-    /*background: url({{ url_for ('static', filename = '../img/background.jpg') }});*/
+    background: url('../img/background.jpg');
     background-size: cover;
     -webkit-filter: grayscale(30%);
     z-index: -1;
