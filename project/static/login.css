@@ -12,7 +12,10 @@ h1
     font-size: 350%;
     text-align: center;
     border: 5px solid rgb(0, 200, 200);
-    box-sizing:content-box;
+    margin:auto;
+    padding: 20px;
+    width: 900px;
+    height: auto;
 }
   
 p
@@ -21,6 +24,7 @@ p
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 120%;
     border: 2px solid powderblue;
+    padding: 5px;
 }
 
 p0
