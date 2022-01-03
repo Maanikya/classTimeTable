@@ -11,6 +11,8 @@ h1
     font-family: "Montserrat", sans-serif;
     font-size: 350%;
     text-align: center;
+    border: 5px solid rgb(0, 200, 200);
+    box-sizing:content-box;
 }
   
 p
