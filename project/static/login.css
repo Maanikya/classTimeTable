@@ -81,7 +81,7 @@ p0
   }
 }
 
-.login-submit {
+/*.login-submit {
   border: 2px solid white;
   background: transparent;
   color: white;
@@ -96,9 +96,9 @@ p0
     color: black;
     transition: 250ms background ease-in;
   }
-}
+}*/
 
-.glow-on-hover {
+.login-submit {
   display: block;
   margin: auto;
   width: 300px;
@@ -113,7 +113,7 @@ p0
   border-radius: 10px;
 }
 
-.glow-on-hover:before {
+.login-submit:before {
   content: '';
   background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
   position: absolute;
@@ -130,19 +130,19 @@ p0
   border-radius: 10px;
 }
 
-.glow-on-hover:active {
+.login-submit:active {
   color: #000
 }
 
-.glow-on-hover:active:after {
+.login-submit:active:after {
   background: transparent;
 }
 
-.glow-on-hover:hover:before {
+.login-submit:hover:before {
   opacity: 1;
 }
 
-.glow-on-hover:after {
+.login-submit:after {
   z-index: -1;
   content: '';
   position: absolute;
