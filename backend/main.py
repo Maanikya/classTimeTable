@@ -32,6 +32,6 @@ def test():
     
     except Exception as e:
         print(e)
-        return f'MT DATABASE IS NOT CONNECTED {e}'
+        return 'MT DATABASE IS NOT CONNECTED'
 
 app.run(debug=True)
