@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 # My Database Connection
 
 local_server=True
-#app=Flask(__name__, template_folder='../frontend', static_url_path='/assets' , static_folder='assets')
 #app=Flask(__name__, template_folder='../backend/assets', static_url_path='/assets' , static_folder='assets')
 #app=Flask(__name__, static_url_path='/assets' , static_folder='assets')
 app=Flask(__name__)
