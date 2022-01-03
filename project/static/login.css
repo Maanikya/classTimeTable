@@ -16,6 +16,12 @@ h1
     padding: 20px;
     width: 900px;
     height: auto;
+    animation: fadeIn 5s;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
 }
   
 p
