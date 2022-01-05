@@ -4,8 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 # My Database Connection
 
 local_server=True
-#app=Flask(__name__, template_folder='../backend/assets', static_url_path='/assets' , static_folder='assets')
-#app=Flask(__name__, static_url_path='/assets' , static_folder='assets')
+# app=Flask(__name__, static_url_path='/assets' , static_folder='assets')
 app=Flask(__name__)
 app.secret_key="classtimetable"
 
@@ -32,5 +31,8 @@ def test():
     except Exception as e:
         print(e)
         return f'MT DATABASE IS NOT CONNECTED. Exception: {e}'
+
+#@app.route("/login", methods=['POST'])
+
 
 app.run(debug=True)
