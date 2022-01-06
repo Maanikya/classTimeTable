@@ -1,5 +1,8 @@
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, redirect, render_template, url_for, request
+from flask.helpers import flash
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin, login_required, login_user ,logout_user, login_manager, LoginManager, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # My Database Connection
 
@@ -15,6 +18,10 @@ db=SQLAlchemy(app)
 class Test(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     name=db.Column(db.String(50))
+
+class Student(db.Model):
+    usn=db.Column(db.Integer, primary_key=True)
+    password=db.Column(db.String(20), unique=True)
 
 @app.route("/")
 def home():
@@ -32,7 +39,13 @@ def test():
         print(e)
         return f'MT DATABASE IS NOT CONNECTED. Exception: {e}'
 
-#@app.route("/login", methods=['POST'])
-
+@app.route("/stuLogin", methods=['POST'])
+def stuLogin():
+    usn=request.form.get('usn')
+    password=request.form.get('password')
+    print(usn, password)
+    #return render_template('index.html')
+    new_user = db.engine.execute(f"INSERT INTO `student` (`usn`, `password`) VALUES ('{usn}','{password}')")
+    return render_template("stuDashboard.html")
 
 app.run(debug=True)
