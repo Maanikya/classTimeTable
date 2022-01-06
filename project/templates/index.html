@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,9 +13,9 @@
 
     <body>
         <h1> Class Time Table </h1>
-        
+        {% block content %}
         <!-- Teacher Login -->
-        <form class="login-form" action="teaLogin.php" method="post">
+        <form class="login-form" action="teaLogin.php" method="POST">
             <p>Teacher Login:</p>
             <div class="container">
                 <label for="uname"><b>Username:</b></label>
@@ -30,10 +29,9 @@
         </form><br>
 
         <!-- Admin Login -->
-        <div class="container">
-        <form class="login-form" action="" method="post">
+        <form class="login-form" action="" method="POST">
             <p>Admin Login:<br></p>
-            
+            <div class="container">
                 <label for="uname"><b>Username</b></label>
                 <input type="text" class="login-username" placeholder="Enter Username" name="uname" required autocomplete="off">
             
@@ -45,7 +43,7 @@
         </form><br>
 
         <!-- Student Login -->
-        <form class="login-form" action="/stuLogin" method="POST">
+        <form class="login-form" action="/stuRegister" method="POST">
             <p>Student Login:<br></p>
             <div class="container">
                 <label for="uname"><b>Username</b></label>
@@ -58,9 +56,14 @@
             </div>
         </form>
 
+        <form action="/registerPage", method="POST">
+            <button name="stuRegister" type="submit" class="login-submit">Register</button>
+        </form>
+
+        {% endblock content %}
         <div class="underlay-photo"></div>
         <div class="underlay-black"></div>
-
+        
         </body>
 
 </html>

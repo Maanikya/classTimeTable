@@ -1,22 +1,22 @@
 body 
 {
-  background-color: rgb(71, 199, 199);
-  font-family: "Open Sans", sans-serif;
-  color: #acacac;
+    background-color: rgb(71, 199, 199);
+    font-family: "Open Sans", sans-serif;
+    color: #acacac;
 }
   
 h1 
 {
-  color: rgb(243, 234, 234);
-  font-family: "Montserrat", sans-serif;
-  font-size: 350%;
-  text-align: center;
-  border: 5px solid rgb(0, 200, 200);
-  margin:auto;
-  padding: 20px;
-  width: 900px;
-  height: auto;
-  animation: fadeIn 5s;
+    color: rgb(243, 234, 234);
+    font-family: "Montserrat", sans-serif;
+    font-size: 350%;
+    text-align: center;
+    border: 5px solid rgb(0, 200, 200);
+    margin: auto;
+    padding: 20px;
+    width: 900px;
+    height: auto;
+    animation: fadeIn 5s;
 }
 
 @keyframes fadeIn {
@@ -29,8 +29,11 @@ p
     color: rgb(180, 155, 155);
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 120%;
+    text-align: center;;
     border: 2px solid powderblue;
-    padding: 5px;
+    padding: .5rem;
+    max-width: 200px;
+    margin: auto;
 }
 
 p0
@@ -57,7 +60,7 @@ p0
     margin: 1rem;
     padding: .5rem;
     transition: 250ms background ease-in;
-    width: calc(100% - 3rem);
+    width: 40%;
     &:focus {
       background: white;
       color: black;
@@ -71,10 +74,10 @@ p0
   //border-bottom: .5rem solid white;
   color: white;
   font-size: 1.5rem;
-  margin: 0 auto;
+  margin: auto;
   max-width: 50%;
   padding: .5rem;
-  text-align: center;
+  text-align: center
   //text-shadow: 1px -1px 0 rgba(0,0,0,0.3);
   .fa-stack-1x {
     color: black;
