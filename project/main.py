@@ -56,6 +56,10 @@ def test():
 #     new_user = db.engine.execute(f"INSERT INTO `student` (`usn`, `password`) VALUES ('{usn}','{password}')")
 #     return render_template("index.html")
 
+@app.route("/registerPage", methods=['POST', 'GET'])
+def registerPage():
+    return render_template("register.html")
+
 @app.route("/stuRegister", methods=['POST', 'GET'])
 def stuRegister():
     if request.method=="POST":
@@ -64,9 +68,5 @@ def stuRegister():
         print(usn, password)
         new_user = db.engine.execute(f"INSERT INTO `student` (`usn`, `password`) VALUES ('{usn}','{password}')")
         return render_template("index.html")
-
-@app.route("/registerPage", methods=['POST', 'GET'])
-def registerPage():
-    return render_template("register.html")
 
 app.run(debug=True)
