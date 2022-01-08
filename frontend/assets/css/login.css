@@ -61,7 +61,8 @@ p0
     top: 0;
 }
 
-.underlay-photo {
+.underlay-photo 
+{
     animation: hue-rotate 6s infinite;
     /*url({{ url_for ('static', filename = '/static/img.png') }})*/
     background: url('../img/background.jpg')
@@ -69,9 +70,10 @@ p0
     background-size: cover;
     -webkit-filter: grayscale(30%);
     z-index: -1;
-  }
+}
 
-.underlay-black {
-    background: rgba(0,0,0,0.7);
-    z-index: -1;
-  }
+.underlay-black 
+{
+  background: rgba(0,0,0,0.7);
+  z-index: -1;
+}
