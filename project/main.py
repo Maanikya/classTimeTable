@@ -1,4 +1,5 @@
 from flask import Flask, redirect, render_template, url_for, request, flash
+from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_required, login_user ,logout_user, login_manager, LoginManager, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -79,5 +80,11 @@ def stuLogin():
             flash('Invalid Credentials. Please Try Again.')
             return render_template("index.html")
 
+# Logout
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 app.run(debug=True)
