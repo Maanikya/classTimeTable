@@ -5,8 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}"> -->
-        
         <link rel="stylesheet" type="text/css" href="../static/login.css">
 
         <title>Class Time Table System</title>
@@ -17,7 +15,7 @@
         {% block content %}
         <!-- Teacher Login -->
         <form class="login-form" action="teaLogin.php" method="POST">
-            <p>Teacher Login:</p>
+            <p>Teacher Login:</p><br>
             <div class="container">
                 <label for="uname"><b>Username:</b></label>
                 <input type="text" class="login-username" placeholder="Enter Username" name="uname" required autocomplete="off">
@@ -31,7 +29,7 @@
 
         <!-- Admin Login -->
         <form class="login-form" action="" method="POST">
-            <p>Admin Login:<br></p>
+            <p>Admin Login:</p><br>
             <div class="container">
                 <label for="uname"><b>Username</b></label>
                 <input type="text" class="login-username" placeholder="Enter Username" name="uname" required autocomplete="off">
@@ -45,7 +43,10 @@
 
         <!-- Student Login -->
         <form class="login-form" action="/stuLogin" method="POST">
-            <p>Student Login:<br></p>
+            <p>Student Login:</p>
+            
+            {% include "message.html" %} 
+
             <div class="container">
                 <label for="uname"><b>Username</b></label>
                 <input type="text" class="login-username" placeholder="Enter USN" name="usn" required autocomplete="off">
@@ -59,7 +60,6 @@
 
         <!-- Register -->
         
-        <!--<a href="{{ url_for('registerPage') }}"><button name="stuRegister" type="submit" class="login-submit">Register</button></a>-->
         <a href="/registerPage"><button name="stuRegister" type="submit" class="login-submit">Register</button></a>
         {% endblock content %}
         <div class="underlay-photo"></div>

@@ -1,5 +1,4 @@
-from flask import Flask, redirect, render_template, url_for, request
-from flask.helpers import flash
+from flask import Flask, redirect, render_template, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_required, login_user ,logout_user, login_manager, LoginManager, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -73,7 +72,8 @@ def stuLogin():
             login_user(user)
             return render_template("/stuDashboard.html")
         else:
-            return 'LOGIN FAIL'
+            flash('Invalid Credentials. Please Try Again.')
+            return render_template("index.html")
 
 
 app.run(debug=True)
