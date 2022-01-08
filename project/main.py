@@ -20,14 +20,14 @@ db=SQLAlchemy(app)
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return Student.query.get(user_id)
 
 class Test(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     name=db.Column(db.String(50))
 
-class Student(db.Model):
-    usn=db.Column(db.Integer, primary_key=True, unique=True)
+class Student(UserMixin, db.Model):
+    id=db.Column(db.Integer, primary_key=True, unique=True)
     password=db.Column(db.String(1000))
 
 @app.route("/")
@@ -51,14 +51,30 @@ def test():
 def registerPage():
     return render_template("register.html")
 
+# Student Register Route
 @app.route("/stuRegister", methods=['POST', 'GET'])
 def stuRegister():
     if request.method=="POST":
+        id=request.form.get('usn')
+        password=request.form.get('password')
+        encPassword = generate_password_hash(password)
+        new_user = db.engine.execute(f"INSERT INTO `student` (`id`, `password`) VALUES ('{id}','{encPassword}')")
+        return render_template("index.html")
+
+# Student Login Route
+@app.route("/stuLogin", methods=['POST', 'GET'])
+def stuLogin():
+    if request.method=="POST":
         usn=request.form.get('usn')
         password=request.form.get('password')
-        print(usn, password)
-        encPassword = generate_password_hash(password)
-        new_user = db.engine.execute(f"INSERT INTO `student` (`usn`, `password`) VALUES ('{usn}','{encPassword}')")
-        return render_template("/index.html")
+        user=Student.query.filter_by(id=usn).first()
+
+        if user and check_password_hash(user.password, password):
+            login_user(user)
+            #return 'LOGIN SUCCESS'
+            return render_template("/stuDashboard.html")
+        else:
+            return 'LOGIN FAIL'
+
 
 app.run(debug=True)
