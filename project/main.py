@@ -28,7 +28,7 @@ class Test(db.Model):
 
 class Student(db.Model):
     usn=db.Column(db.Integer, primary_key=True, unique=True)
-    password=db.Column(db.String(20))
+    password=db.Column(db.String(1000))
 
 @app.route("/")
 def home():
@@ -57,7 +57,8 @@ def stuRegister():
         usn=request.form.get('usn')
         password=request.form.get('password')
         print(usn, password)
-        new_user = db.engine.execute(f"INSERT INTO `student` (`usn`, `password`) VALUES ('{usn}','{password}')")
+        encPassword = generate_password_hash(password)
+        new_user = db.engine.execute(f"INSERT INTO `student` (`usn`, `password`) VALUES ('{usn}','{encPassword}')")
         return render_template("/index.html")
 
 app.run(debug=True)
