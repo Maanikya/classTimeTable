@@ -1,5 +1,34 @@
 {% extends "index.html" %}
 
 {% block content %} 
-
+<body>
+    <h2>Your Time Table:</h2>
+    <div class="wrapper">
+        <!-- Top menu -->
+        <div class="sidebar">
+            <!-- Profile & Text -->
+            <div class="profile">
+                <h3>Welcome</h3>
+                <p>{usn}</p>
+            </div>
+            
+            <!-- Menu Item -->
+            <ul>
+                <li>
+                    <a href="#" class="active">
+                        <span class="icon"><i class="fas fa-desktop"></i></span>
+                        <span class="item">My Dashboard</span>
+                    </a>
+                </li>
+                    
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa fa-power-off"></i></span>
+                        <span class="item">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
 {% endblock content %} 

@@ -71,7 +71,6 @@ def stuLogin():
 
         if user and check_password_hash(user.password, password):
             login_user(user)
-            #return 'LOGIN SUCCESS'
             return render_template("/stuDashboard.html")
         else:
             return 'LOGIN FAIL'

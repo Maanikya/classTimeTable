@@ -1,170 +1,141 @@
 <style>
-    @import url(https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,700);
-@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 
-body, html 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+*{
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body
 {
-  height: 100%;
+    background: #000000;
 }
 
-body 
+.wrapper .sidebar
 {
-  font-family: 'Open Sans';
-  font-weight: 100;
-  display: flex;
-  overflow: hidden;
+    background: rgb(25, 25, 25);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 225px;
+    height: 100%;
+    padding: 20px 0;
+    transition: all 0.5s ease;
 }
 
-input 
+.wrapper .sidebar .profile
 {
-  ::-webkit-input-placeholder {
-     color: rgba(255,255,255,0.7);
-  }
-
-  ::-moz-placeholder {
-     color: rgba(255,255,255,0.7);  
-  }
-
-  ::-ms-input-placeholder {  
-     color: rgba(255,255,255,0.7);  
-  }
-
-  &:focus {
-    outline: 0 transparent solid;
-    ::-webkit-input-placeholder {
-     color: rgba(0,0,0,0.7);
-    }
-
-    ::-moz-placeholder {
-       color: rgba(0,0,0,0.7);  
-    }
-
-    :-ms-input-placeholder {  
-       color: rgba(0,0,0,0.7);  
-    }
-  }
+    margin-bottom: 30px;
+    text-align: center;
 }
 
-.login-form 
+.wrapper .sidebar .profile img
 {
-  //background: #222;
-  //box-shadow: 0 0 1rem rgba(0,0,0,0.3);
-  min-height: 10rem;
-  margin: auto;
-  max-width: 50%;
-  padding: .5rem;
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
 }
 
-.login-text 
+.wrapper .sidebar .profile h3
 {
-  //background: hsl(40,30,60);
-  //border-bottom: .5rem solid white;
-  color: white;
-  font-size: 1.5rem;
-  margin: 0 auto;
-  max-width: 50%;
-  padding: .5rem;
-  text-align: center;
-  //text-shadow: 1px -1px 0 rgba(0,0,0,0.3);
-  .fa-stack-1x {
-    color: black;
-  }
+    color: #ffffff;
+    margin: 10px 0 5px;
 }
 
-.login-username, .login-password {
-  background: transparent;
-  border: 0 solid;
-  border-bottom: 1px solid rgba(white, .5);
-  color: white;
-  display: block;
-  margin: 1rem;
-  padding: .5rem;
-  transition: 250ms background ease-in;
-  width: calc(100% - 3rem);
-  &:focus {
-    background: white;
-    color: black;
-    transition: 250ms background ease-in;
-  }
+.wrapper .sidebar .profile p
+{
+    color: rgb(206, 240, 253);
+    font-size: 14px;
 }
 
-.login-forgot-pass {
-  //border-bottom: 1px solid white;
-  bottom: 0;
-  color: white;
-  cursor: pointer;
-  display: block;
-  font-size: 75%;
-  left: 0;
-  opacity: 0.6;
-  padding: .5rem;
-  position: absolute;
-  text-align: center;
-  /*text-decoration: none;*/
-  width: 100%;
-  &:hover {
-    opacity: 1;
-  }
+.wrapper .sidebar ul li a
+{
+    display: block;
+    padding: 13px 30px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    position: relative;
 }
 
-.login-submit {
-  border: 1px solid white;
-  background: transparent;
-  color: white;
-  display: block;
-  margin: 1rem auto;
-  min-width: 1px;
-  padding: .25rem;
-  transition: 250ms background ease-in;
-  &:hover, &:focus {
-    background: white;
-    color: black;
-    transition: 250ms background ease-in;
-  }
+.wrapper .sidebar ul li a .icon
+{
+    color: #8f8f8f;
+    width: 30px;
+    display: inline-block;
 }
 
-
-[class*=underlay] {
-  left: 0;
-  min-height: 100%;
-  min-width: 100%;
-  position: fixed;
-  top: 0;
-}
-.underlay-photo {
-  animation: hue-rotate 6s infinite;
-  background: url('../img/background.jpg');
-  background-size: cover;
-  -webkit-filter: grayscale(30%);
-  z-index: -1;
-}
-.underlay-black {
-  background: rgba(0,0,0,0.7);
-  z-index: -1;
+.wrapper .sidebar ul li a:hover, .wrapper .sidebar ul li a.active
+{
+    color: #0c7db1;
+    background:rgb(0, 0, 0);
+    border-right: 2px solid rgb(5, 68, 104);
 }
 
-@keyframes hue-rotate {
-  from {
-    -webkit-filter: grayscale(30%) hue-rotate(0deg);
-  }
-  to {
-    -webkit-filter: grayscale(30%) hue-rotate(360deg);
-  }
+.wrapper .sidebar ul li a:hover .icon,
+.wrapper .sidebar ul li a.active .icon
+{
+    color: #0c7db1;
 }
+
+.wrapper .sidebar ul li a:hover:before,
+.wrapper .sidebar ul li a.active:before
+{
+    display: block;
+}
+
+.wrapper .section
+{
+    width: calc(100% - 225px);
+    margin-left: 225px;
+    transition: all 0.5s ease;
+}
+
 </style>
 
-<form class="login-form">
-    <p class="login-text">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-lock fa-stack-1x"></i>
-      </span>
-    </p>
-    <input type="email" class="login-username" autofocus="true" required="true" placeholder="Email" />
-    <input type="password" class="login-password" required="true" placeholder="Password" />
-    <input type="submit" name="Login" value="Login" class="login-submit" />
-  </form>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
 
-  <a href="#" class="login-forgot-pass">forgot password?</a>
-  <div class="underlay-photo"></div>
-  <div class="underlay-black"></div> 
+    <body>
+        <div class="wrapper">
+            <!--Top menu -->
+            <div class="sidebar">
+                <!--profile image & text-->
+                <div class="profile">
+                    <h3>Welcome</h3>
+                    <p>/usn/</p>
+                </div>
+                
+                <!--menu item-->
+                <ul>
+                    <li>
+                        <a href="#" class="active">
+                            <span class="icon"><i class="fas fa-desktop"></i></span>
+                            <span class="item">My Dashboard</span>
+                        </a>
+                    </li>
+                        
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fa fa-power-off"></i></span>
+                            <span class="item">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
