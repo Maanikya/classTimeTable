@@ -5,7 +5,10 @@
         <br><br>
 
         <form class="login-form" action="/stuRegister" method="POST">
-            <p>Register:</p>
+            <p>Register:</p><br>
+
+            {% include "message.html" %} 
+            
             <div class="container">
                 <label for="uname"><b>Username:</b></label>
                 <input type="text" class="login-username" placeholder="Enter Username" name="usn" required autocomplete="off">

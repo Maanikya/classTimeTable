@@ -57,6 +57,10 @@ def stuRegister():
         id=request.form.get('usn')
         password=request.form.get('password')
         encPassword = generate_password_hash(password)
+        user=Student.query.filter_by(id=id).first()
+        if user:
+            flash("Student Already Registered")
+            return render_template("register.html")
         new_user = db.engine.execute(f"INSERT INTO `student` (`id`, `password`) VALUES ('{id}','{encPassword}')")
         return render_template("index.html")
 
