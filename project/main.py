@@ -36,6 +36,11 @@ mydb = mysql.connector.connect(
 def load_user(user_id):
     return Student.query.get(user_id)
 
+@login_manager.user_loader
+def load_user(user_id):
+    return teacher.query.get(user_id)
+
+
 class Test(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     name=db.Column(db.String(50))
@@ -45,7 +50,7 @@ class Student(UserMixin, db.Model):
     password=db.Column(db.String(1000))
 
 class teacher(UserMixin, db.Model):
-    tid=db.Column(db.String, primary_key=True, unique=True)
+    id=db.Column(db.String, primary_key=True, unique=True)
     password=db.Column(db.String(1000))
 
 @app.route("/")
@@ -74,7 +79,7 @@ def stuRegister():
         encPassword = generate_password_hash(password)
         user=Student.query.filter_by(id=id).first()
         if user:
-            flash("Student Already Registered")
+            flash("Student Already Registered", 'student')
             return render_template("register.html")
         new_user = db.engine.execute(f"INSERT INTO `student` (`id`, `password`) VALUES ('{id}','{encPassword}')")
         return render_template("index.html")
@@ -83,14 +88,14 @@ def stuRegister():
 @app.route("/teaRegister", methods=['POST', 'GET'])
 def teaRegister():
     if request.method=="POST":
-        tid=request.form.get('tid')
+        id=request.form.get('tid')
         password=request.form.get('password')
         encPassword = generate_password_hash(password)
-        user=teacher.query.filter_by(tid=tid).first()
+        user=teacher.query.filter_by(id=id).first()
         if user:
-            flash("Teacher Already Registered")
+            flash("Teacher Already Registered", 'teacher')
             return render_template("register.html")
-        new_user = db.engine.execute(f"INSERT INTO `teacher` (`tid`, `password`) VALUES ('{tid}','{encPassword}')")
+        new_user = db.engine.execute(f"INSERT INTO `teacher` (`id`, `password`) VALUES ('{id}','{encPassword}')")
         return render_template("index.html")
 
 # Student Login Route
@@ -113,10 +118,31 @@ def stuLogin():
             flash(subresult, 'subject')
             return render_template("/stuDashboard.html")
         else:
-            flash('Invalid Credentials. Please Try Again.')
+            flash('Invalid Credentials. Please Try Again.', 'student')
             return render_template("index.html")
 
+# Teacher Login Route
+@app.route("/teaLogin", methods=['POST', 'GET'])
+def teaLogin():
+    if request.method=="POST":
+        id=request.form.get('tid')
+        password=request.form.get('password')
+        user=teacher.query.filter_by(id=id).first()
 
+        if user and check_password_hash(user.password, password):
+            login_user(user)
+            timetable = mydb.cursor()
+            timetable.execute("SELECT * FROM timetable") 
+            myresult = timetable.fetchall()
+            flash(myresult, 'tt')
+            subdetails = mydb.cursor()
+            subdetails.execute("SELECT * FROM subject")
+            subresult = subdetails.fetchall()
+            flash(subresult, 'subject')
+            return render_template("/teaDashboard.html")
+        else:
+            flash('Invalid Credentials. Please Try Again.', 'teacher')
+            return render_template("index.html")
 
 # Logout
 @app.route('/logout')

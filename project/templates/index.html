@@ -15,13 +15,28 @@
         <h1> Class Time Table </h1>
 
         {% block content %}
-        
+
         <!-- Teacher Login -->
-        <form class="login-form" action="teaLogin.php" method="POST">
+        <form class="login-form" action="/teaLogin" method="POST">
             <p>Teacher Login:</p><br>
+
+            {% with messages = get_flashed_messages(category_filter=["teacher"]) %}
+
+                    {% for message in messages %}
+                    <br>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            <span aria-hidedn="true">x</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                
+            {% endwith %}
+
             <div class="container">
                 <label for="uname"><b>Username:</b></label>
-                <input type="text" class="login-username" placeholder="Enter Username" name="uname" required autocomplete="off">
+                <input type="text" class="login-username" placeholder="Enter Username" name="tid" required autocomplete="off">
           
                 <label for="psw"><b>Password:</b></label>
                 <input type="password" class="login-password" placeholder="Enter Password" name="password" required autocomplete="off">
@@ -48,7 +63,19 @@
         <form class="login-form" action="/stuLogin" method="POST">
             <p>Student Login:</p><br>
             
-            {% include "message.html" %}
+            {% with messages = get_flashed_messages(category_filter=["student"]) %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <br>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            <span aria-hidedn="true">x</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
 
             <div class="container">
                 <label for="uname"><b>Username</b></label>
