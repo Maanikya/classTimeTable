@@ -37,18 +37,20 @@ table, th, td {
 }
 
 table{
-    margin-left: 265px;
+    margin-left: 270px;
 }
 
 th{
     font-size: larger;
     font-weight: large;
     color: rgb(125, 236, 255);
+    width: 2cm;
 }
 
 tr{
-    height: 40px;
+    height: 50px;
     text-align: center;
+    color: rgb(255, 255, 255);
 }
 
 @keyframes fadeIn {
