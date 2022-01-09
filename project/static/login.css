@@ -29,6 +29,28 @@ h2
     padding: 20px;
 }
 
+/* Table */
+
+table, th, td {
+    border: 1px solid rgb(219, 219, 219);
+    border-collapse: collapse;
+}
+
+table{
+    margin-left: 265px;
+}
+
+th{
+    font-size: larger;
+    font-weight: large;
+    color: rgb(125, 236, 255);
+}
+
+tr{
+    height: 40px;
+    text-align: center;
+}
+
 @keyframes fadeIn {
   0% {opacity:0;}
   100% {opacity:1;}

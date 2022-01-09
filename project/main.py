@@ -3,6 +3,7 @@ from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_required, login_user ,logout_user, login_manager, LoginManager, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+import mysql.connector
 
 # My Database Connection
 local_server=True
@@ -17,6 +18,22 @@ login_manager.login_view='login'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/databaseName'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@localhost/classtimetable'
 db=SQLAlchemy(app)
+
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",
+    database="classtimetable"
+)
+ 
+timetable = mydb.cursor()
+ 
+timetable.execute("SELECT * FROM timetable")
+ 
+myresult = timetable.fetchall()
+ 
+for x in myresult:
+    print(x)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -75,6 +92,8 @@ def stuLogin():
 
         if user and check_password_hash(user.password, password):
             login_user(user)
+            for x in myresult:
+                flash(x)
             return render_template("/stuDashboard.html")
         else:
             flash('Invalid Credentials. Please Try Again.')
@@ -86,5 +105,8 @@ def stuLogin():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+# @app.route('/tt')
+# def tt():
 
 app.run(debug=True)
