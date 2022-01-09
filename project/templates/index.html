@@ -11,8 +11,11 @@
     </head>
 
     <body>
+        <br>
         <h1> Class Time Table </h1>
+
         {% block content %}
+        
         <!-- Teacher Login -->
         <form class="login-form" action="teaLogin.php" method="POST">
             <p>Teacher Login:</p><br>
@@ -62,6 +65,7 @@
         
         <a href="/registerPage"><button name="stuRegister" type="submit" class="login-submit">Register</button></a>
         {% endblock content %}
+
         <div class="underlay-photo"></div>
         <div class="underlay-black"></div>
         

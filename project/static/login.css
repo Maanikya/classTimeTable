@@ -7,12 +7,12 @@ body
   
 h1 
 {
-  color: rgb(243, 234, 234);
+  color: rgb(247, 247, 207);
   font-family: "Montserrat", sans-serif;
   font-size: 350%;
   text-align: center;
   border: 5px solid rgb(0, 200, 200);
-  margin:auto;
+  margin: auto;
   padding: 20px;
   width: 900px;
   height: auto;
