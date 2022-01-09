@@ -32,8 +32,11 @@ timetable.execute("SELECT * FROM timetable")
  
 myresult = timetable.fetchall()
  
-for x in myresult:
-    print(x)
+# for x in myresult:
+    # timetable.execute("SELECT P1 FROM timetable where day=")
+    # myresult=timetable.fetchall()
+    #print(myresult)
+    # print(x[3])
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -54,15 +57,8 @@ def home():
 # Testing whether DB is connected or not
 @app.route("/test")
 def test():
-    try:
-        a=Test.query.all()
-        print(a)
-        return 'MY DATABASE IS CONNECTED'
-    
-    except Exception as e:
-        print(e)
-        return f'MT DATABASE IS NOT CONNECTED. Exception: {e}'
-
+    flash(myresult)
+    return render_template("test.html")
 
 @app.route("/registerPage", methods=['POST', 'GET'])
 def registerPage():
@@ -92,8 +88,7 @@ def stuLogin():
 
         if user and check_password_hash(user.password, password):
             login_user(user)
-            for x in myresult:
-                flash(x)
+            flash(myresult)
             return render_template("/stuDashboard.html")
         else:
             flash('Invalid Credentials. Please Try Again.')
@@ -105,8 +100,5 @@ def stuLogin():
 def logout():
     logout_user()
     return redirect(url_for('home'))
-
-# @app.route('/tt')
-# def tt():
 
 app.run(debug=True)
