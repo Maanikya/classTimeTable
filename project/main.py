@@ -44,6 +44,10 @@ class Student(UserMixin, db.Model):
     id=db.Column(db.Integer, primary_key=True, unique=True)
     password=db.Column(db.String(1000))
 
+class teacher(UserMixin, db.Model):
+    tid=db.Column(db.String, primary_key=True, unique=True)
+    password=db.Column(db.String(1000))
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -75,6 +79,20 @@ def stuRegister():
         new_user = db.engine.execute(f"INSERT INTO `student` (`id`, `password`) VALUES ('{id}','{encPassword}')")
         return render_template("index.html")
 
+# Teacher Register Route
+@app.route("/teaRegister", methods=['POST', 'GET'])
+def teaRegister():
+    if request.method=="POST":
+        tid=request.form.get('tid')
+        password=request.form.get('password')
+        encPassword = generate_password_hash(password)
+        user=teacher.query.filter_by(tid=tid).first()
+        if user:
+            flash("Teacher Already Registered")
+            return render_template("register.html")
+        new_user = db.engine.execute(f"INSERT INTO `teacher` (`tid`, `password`) VALUES ('{tid}','{encPassword}')")
+        return render_template("index.html")
+
 # Student Login Route
 @app.route("/stuLogin", methods=['POST', 'GET'])
 def stuLogin():
@@ -97,6 +115,8 @@ def stuLogin():
         else:
             flash('Invalid Credentials. Please Try Again.')
             return render_template("index.html")
+
+
 
 # Logout
 @app.route('/logout')
