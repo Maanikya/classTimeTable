@@ -37,8 +37,8 @@ table, th, td {
 }
 
 table{
+    width: 79%;
     margin-left: 270px;
-    /* width: 10cm; */
 }
 
 th{
@@ -46,6 +46,12 @@ th{
     font-weight: large;
     color: rgb(125, 236, 255);
     width: 10cm;
+}
+
+day{
+    font-size: larger;
+    font-weight: bold;
+    color: rgb(125, 236, 255);
 }
 
 tr{
