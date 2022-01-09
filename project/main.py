@@ -26,12 +26,6 @@ mydb = mysql.connector.connect(
     database="classtimetable"
 )
  
-timetable = mydb.cursor()
- 
-timetable.execute("SELECT * FROM timetable")
- 
-myresult = timetable.fetchall()
- 
 # for x in myresult:
     # timetable.execute("SELECT P1 FROM timetable where day=")
     # myresult=timetable.fetchall()
@@ -57,6 +51,9 @@ def home():
 # Testing whether DB is connected or not
 @app.route("/test")
 def test():
+    timetable = mydb.cursor()
+    timetable.execute("SELECT * FROM timetable") 
+    myresult = timetable.fetchall()
     flash(myresult)
     return render_template("test.html")
 
@@ -88,11 +85,22 @@ def stuLogin():
 
         if user and check_password_hash(user.password, password):
             login_user(user)
-            flash(myresult)
+            timetable = mydb.cursor()
+            timetable.execute("SELECT * FROM timetable") 
+            myresult = timetable.fetchall()
+            flash(myresult, 'tt')
             return render_template("/stuDashboard.html")
         else:
             flash('Invalid Credentials. Please Try Again.')
             return render_template("index.html")
+
+@app.route("/subdetails", methods=['POST', 'GET'])
+def subdetails():
+    subdetails = mydb.cursor()
+    subdetails.execute("SELECT * FROM subject")
+    subresult = subdetails.fetchall()
+    flash(subresult)
+    return render_template("/stuDashboard.html")
 
 # Logout
 @app.route('/logout')
