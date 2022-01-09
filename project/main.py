@@ -89,18 +89,14 @@ def stuLogin():
             timetable.execute("SELECT * FROM timetable") 
             myresult = timetable.fetchall()
             flash(myresult, 'tt')
+            subdetails = mydb.cursor()
+            subdetails.execute("SELECT * FROM subject")
+            subresult = subdetails.fetchall()
+            flash(subresult, 'subject')
             return render_template("/stuDashboard.html")
         else:
             flash('Invalid Credentials. Please Try Again.')
             return render_template("index.html")
-
-@app.route("/subdetails", methods=['POST', 'GET'])
-def subdetails():
-    subdetails = mydb.cursor()
-    subdetails.execute("SELECT * FROM subject")
-    subresult = subdetails.fetchall()
-    flash(subresult)
-    return render_template("/stuDashboard.html")
 
 # Logout
 @app.route('/logout')
