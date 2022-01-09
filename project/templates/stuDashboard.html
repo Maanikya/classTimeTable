@@ -272,7 +272,7 @@
 
     <!-- Subject Button -->
     <div style="margin-right: 18cm;">
-    <button onclick="subdetails()" class="login-submit">Subject Details</button><br><br>
+    <button onclick="subdetails()" class="login-submit" style="font-size: large">Subject Details</button><br><br>
     </div>
 
     <div id="myDIV" style="display: none;">
@@ -532,11 +532,13 @@
 </body>
 
 <script>
-    function subdetails() {
+    function subdetails() 
+    {
       var x = document.getElementById("myDIV");
       if (x.style.display === "none") {
         x.style.display = "block";
-      } else {
+      } 
+      else {
         x.style.display = "none";
       }
     }
