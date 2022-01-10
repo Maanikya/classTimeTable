@@ -5,6 +5,34 @@
     <h2 style="margin-left: 2cm">Your Time Table:</h2>
     <br>
     {% include "timetables.html" %}
+
+    <div class="wrapper">
+    <!-- Top menu -->
+        <div class="sidebar">
+        <!-- Profile & Text -->
+            <div class="profile">
+                <h3>Welcome</h3>
+                    <p>{{current_user.id}}</p>
+            </div>
+                        
+            <!-- Menu Item -->
+            <ul>
+                <li>
+                    <a href="#" class="active">
+                        <span class="icon"><i class="fas fa-desktop"></i></span>
+                        <span class="item">My Dashboard</span>
+                    </a>
+                </li>
+    
+                <li>
+                    <a href="/logout">
+                        <span class="icon"><i class="fa fa-power-off"></i></span>
+                        <span class="item">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </body>
 
 <script>
