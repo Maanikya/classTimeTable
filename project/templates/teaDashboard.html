@@ -18,16 +18,30 @@
             <!-- Menu Item -->
             <ul>
                 <li>
-                    <a href="#" class="active">
+                    <a class="active">
                         <span class="icon"><i class="fas fa-desktop"></i></span>
                         <span class="item">My Dashboard</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/edit">
                         <span class="icon"><i class="fas fa-desktop"></i></span>
                         <span class="item">Edit</span>
+                        <!-- <div id="overlay" style="padding: 20%;">
+                            <form action="/action_page.php" class="form-container">
+                              <h1>Login</h1>
+                          
+                              <label for="email"><b>Email</b></label>
+                              <input type="text" placeholder="Enter Email" name="email" required>
+                          
+                              <label for="psw"><b>Password</b></label>
+                              <input type="password" placeholder="Enter Password" name="psw" required>
+                          
+                              <button type="submit" class="btn" onclick="off()">Login</button>
+                              <button type="button" class="btn cancel" onclick="off()">Close</button>
+                            </form>
+                        </div> -->
                     </a>
                 </li>
                 
@@ -53,6 +67,14 @@
         x.style.display = "none";
       }
     }
+
+    function on() {
+        document.getElementById("overlay").style.display = "block";
+      }
+      
+      function off() {
+        document.getElementById("overlay").style.display = "none";
+      }
 </script>
 
 {% endblock content %} 

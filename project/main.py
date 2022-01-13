@@ -12,7 +12,7 @@ app.secret_key="classtimetable"
 
 # This is for getting the Unique User Access
 login_manager=LoginManager(app)
-login_manager.login_view='login'
+login_manager.login_view='home'
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/databaseName'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@localhost/classtimetable'
@@ -24,12 +24,6 @@ mydb = mysql.connector.connect(
     password="",
     database="classtimetable"
 )
- 
-# for x in myresult:
-    # timetable.execute("SELECT P1 FROM timetable where day=")
-    # myresult=timetable.fetchall()
-    #print(myresult)
-    # print(x[3])
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -45,7 +39,7 @@ class Test(db.Model):
     name=db.Column(db.String(50))
 
 class Student(UserMixin, db.Model):
-    id=db.Column(db.Integer, primary_key=True, unique=True)
+    id=db.Column(db.String, primary_key=True, unique=True)
     password=db.Column(db.String(1000))
 
 class teacher(UserMixin, db.Model):
@@ -104,7 +98,6 @@ def stuLogin():
         usn=request.form.get('usn')
         password=request.form.get('password')
         user=Student.query.filter_by(id=usn).first()
-
         if user and check_password_hash(user.password, password):
             login_user(user)
             timetable = mydb.cursor()
@@ -138,10 +131,41 @@ def teaLogin():
             subdetails.execute("SELECT * FROM subject")
             subresult = subdetails.fetchall()
             flash(subresult, 'subject')
+            #return redirect(url_for('teaDashboard'))
             return render_template("/teaDashboard.html")
         else:
             flash('Invalid Credentials. Please Try Again.', 'teacher')
-            return render_template("index.html")
+            return redirect(url_for('home'))
+
+
+# Edit
+@app.route('/edit')
+@login_required
+def edit():
+    return render_template("edit.html")
+
+# Edit Day
+@app.route('/editday', methods=['GET', 'POST'])
+@login_required
+def editday():
+    day=request.form.get('day')
+    period=request.form.get('period')
+    subject=request.form.get('subject')
+    db.engine.execute(f"UPDATE `timetable` SET `{period}` = '{subject}' WHERE `timetable`.`DayName` = '{day}';")
+    timetable = mydb.cursor()
+    timetable.execute("SELECT * FROM timetable") 
+    myresult = timetable.fetchall()
+    flash(myresult, 'tt')
+    subdetails = mydb.cursor()
+    subdetails.execute("SELECT * FROM subject")
+    subresult = subdetails.fetchall()
+    flash(subresult, 'subject')
+    return redirect(url_for('teaDashboard'))
+
+@app.route('/teaDashboard')
+@login_required
+def teaDashboard():
+    return render_template("teaDashboard.html")
 
 # Logout
 @app.route('/logout')

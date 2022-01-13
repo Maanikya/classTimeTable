@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% block content %} 
+<body>
+    <h2>Select the Day to Edit:</h2>
+
+    <form class="login-form"  action="/editday" method="POST">
+        <div class="container">
+            <label for="uname"><b>Day:</b></label>
+            <input type="text" class="login-username" placeholder="Enter Day" name="day" required autocomplete="off">
+      
+            <label for="psw"><b>Period:</b></label>
+            <input type="text" class="login-password" placeholder="Enter Slot Number" name="period" required autocomplete="off">
+
+            <label for="psw"><b>New Subject:</b></label>
+            <input type="text" class="login-password" placeholder="Enter New Subject" name="subject" required autocomplete="off">
+            <br><br>
+            <button type="submit" name="Login" value="Login" class="login-submit">Submit</button>
+        </div>
+    <!-- <label for="day">Choose a car:</label>
+    <select name="day" id="days">
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option>
+        <option value="Thursday ">Thursday</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Submit" class="login-submit"> -->
+    <!-- <button type="submit" name="submit" value="submit" class="login-submit">Submit</button> -->
+    </form>
+
+</body>
+{% endblock content %}
