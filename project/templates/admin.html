@@ -1,3 +1,4 @@
+{% extends "index.html" %}
 
 {% block content %} 
 <body>
@@ -11,7 +12,7 @@
         <!-- Profile & Text -->
             <div class="profile">
                 <h3>Welcome</h3>
-                    <p>{{current_user.id}}</p>
+                    <p>ADMIN</p>
             </div>
                     
             <!-- Menu Item -->
@@ -24,7 +25,7 @@
                 </li>
 
                 <li>
-                    <a href="/edit">
+                    <a href="edit/editAdmin">
                         <span class="icon"><i class="fas fa-desktop"></i></span>
                         <span class="item">Edit</span>
                         <!-- <div id="overlay" style="padding: 20%;">

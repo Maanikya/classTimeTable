@@ -1,11 +1,10 @@
 {% extends "index.html" %}
 
-{% block content %}
+{% block content %} 
 <body>
     <h2 style="margin-left: 2cm">Your Time Table:</h2>
     <br>
-    {% include "timetables.html" %}
-    <br>
+    {% include "timetables.html" %}<br>
 
     <div class="wrapper">
     <!-- Top menu -->
@@ -46,14 +45,6 @@
                     </a>
                 </li>
                 
-                <!-- <li>
-                    <a>
-                        <form id="myForm">
-                            <input type="button" onclick="myFunction()" value="Reset form">
-                        </form>
-                    </a>
-                </li> -->
-
                 <li>
                     <a href="/logout">
                         <span class="icon"><i class="fa fa-power-off"></i></span>
@@ -66,13 +57,12 @@
 </body>
 
 <script>
-    function subdetails() {
+    function subdetails() 
+    {
       var x = document.getElementById("myDIV");
-      
       if (x.style.display === "none") {
         x.style.display = "block";
       } 
-      
       else {
         x.style.display = "none";
       }
@@ -82,10 +72,9 @@
         document.getElementById("overlay").style.display = "block";
       }
       
-    function off() {
+      function off() {
         document.getElementById("overlay").style.display = "none";
       }
-
 </script>
 
 {% endblock content %} 

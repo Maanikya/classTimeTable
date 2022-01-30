@@ -1,3 +1,4 @@
+from pyexpat.errors import messages
 from flask import Flask, redirect, render_template, url_for, request, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_required, login_user , logout_user, login_manager, LoginManager, current_user
@@ -7,7 +8,7 @@ import json
 
 # My Database Connection
 local_server=True
-app=Flask(__name__)
+app = Flask(__name__)
 app.debug = True
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.secret_key="classtimetable"
@@ -38,7 +39,6 @@ def load_user(user_id):
 @login_manager.user_loader
 def load_user(user_id):
     return teacher.query.get(user_id)
-
 
 class Test(db.Model):
     id=db.Column(db.Integer,primary_key=True)
@@ -115,7 +115,7 @@ def stuLogin():
             subdetails.execute("SELECT * FROM subject")
             subresult = subdetails.fetchall()
             flash(subresult, 'subject')
-            return render_template("/stuDashboard.html")
+            return render_template("stuDashboard.html")
         else:
             flash('Invalid Credentials. Please Try Again.', 'student')
             return render_template("index.html")
@@ -131,17 +131,17 @@ def teaLogin():
         if user and check_password_hash(user.password, password):
             login_user(user)
             session['user']=id
-            timetable = mydb.cursor()
-            timetable.execute("SELECT * FROM timetable") 
-            myresult = timetable.fetchall()
-            flash(myresult, 'tt')
-            subdetails = mydb.cursor()
-            subdetails.execute("SELECT * FROM subject")
-            subresult = subdetails.fetchall()
-            flash(subresult, 'subject')
-            timetable.close()
-            # return redirect(url_for('teaDashboard'))
-            return render_template("teaDashboard.html")
+            # timetable = mydb.cursor()
+            # timetable.execute("SELECT * FROM timetable") 
+            # myresult = timetable.fetchall()
+            # flash(myresult, 'tt')
+            # subdetails = mydb.cursor()
+            # subdetails.execute("SELECT * FROM subject")
+            # subresult = subdetails.fetchall()
+            # flash(subresult, 'subject')
+            # timetable.close()
+            return redirect(url_for('teaDashboard'))
+            # return render_template("teaDashboard.html")
         else:
             flash('Invalid Credentials. Please Try Again.', 'teacher')
             return redirect(url_for('home'))
@@ -180,48 +180,65 @@ def adminLogin():
         return render_template("admin.html")
 
 # Edit
-@app.route('/edit')
-def edit():
-    return render_template("edit.html")
+@app.route('/edit/<user>')
+def edit(user):
+    if user=="teacher":   
+        return render_template("edit.html")
+
+    else:
+        return render_template("editAdmin.html")
+
 
 # Edit Day
-@app.route('/editday', methods=['GET', 'POST'])
-def editday():
-    day=request.form.get('day')
-    period=request.form.get('period')
-    subject=request.form.get('subject')
-    db.engine.execute(f"UPDATE `timetable` SET `{period}` = '{subject}' WHERE `timetable`.`DayName` = '{day}';")
-    # tt = mydb.cursor()
-    # tt.execute("SELECT * FROM timetable") 
-    # myresult = tt.fetchall()
-    # flash(myresult, 'tt')
-    # subdetails = mydb.cursor()
-    # subdetails.execute("SELECT * FROM subject")
-    # subresult = subdetails.fetchall()
-    # flash(subresult, 'subject')
-    # render_template("timetables.html")
-    # return render_template("teaDashboard.html")
-    return redirect(url_for('teaDashboard'))
+@app.route('/editday/<user>', methods=['GET', 'POST'])
+def editday(user):
+    if user=='teacher':
+        day=request.form.get('day')
+        period=request.form.get('period')
+        subject=request.form.get('subject')
+        db.engine.execute(f"UPDATE `timetable` SET `{period}` = '{subject}' WHERE `timetable`.`DayName` = '{day}';")
+        return redirect(url_for('teaDashboard'))
+        #return redirect("teaDashboard")
+        # tt = mydb.cursor()
+        # tt.execute("SELECT * FROM timetable") 
+        # myresult = tt.fetchall()
+        # flash(myresult, 'tt')
+        # tt.close()
+        # subdetails = mydb.cursor()
+        # subdetails.execute("SELECT * FROM subject")
+        # subresult = subdetails.fetchall()
+        # flash(subresult, 'subject')
+        # subdetails.close()
+        # return render_template("teaDashboard.html")
+
+    else:
+        day=request.form.get('day')
+        period=request.form.get('period')
+        subject=request.form.get('subject')
+        db.engine.execute(f"UPDATE `timetable` SET `{period}` = '{subject}' WHERE `timetable`.`DayName` = '{day}';")
+        return redirect(url_for('adminLogin'))
 
 # Teacher Dashbaord
 @app.route('/teaDashboard')
-# @login_required
+@login_required
 def teaDashboard():
     tt = mydb.cursor()
     tt.execute("SELECT * FROM timetable") 
     myresult = tt.fetchall()
     flash(myresult, 'tt')
+    tt.close()
     subdetails = mydb.cursor()
     subdetails.execute("SELECT * FROM subject")
     subresult = subdetails.fetchall()
     flash(subresult, 'subject')
+    subdetails.close()
     return render_template("teaDashboard.html")
 
 # Logout
 @app.route('/logout')
 @login_required
 def logout():
-    session.pop('user')
+    #session.pop('user')
     logout_user()
     return redirect(url_for('home'))
 

@@ -83,6 +83,17 @@ p0
     border: 2px solid powderblue;
 }
 
+select
+{
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    text-align: center;
+    background:#000000;
+    border: 2px solid powderblue;
+    margin-left: 5px;
+    border-radius: 10px;    
+}
+
 .login-form 
 {
   //background: #222;
