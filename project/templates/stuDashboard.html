@@ -5,6 +5,7 @@
     <h2 style="margin-left: 2cm">Your Time Table:</h2>
     <br>
     {% include "timetables.html" %}
+    <br>
 
     <div class="wrapper">
     <!-- Top menu -->
@@ -18,14 +19,14 @@
             <!-- Menu Item -->
             <ul>
                 <li>
-                    <a href="#" class="active">
+                    <a class="active">
                         <span class="icon"><i class="fas fa-desktop"></i></span>
                         <span class="item">My Dashboard</span>
                     </a>
                 </li>
     
                 <li>
-                    <a href="logout"-->
+                    <a href="logout">
                         <span class="icon"><i class="fa fa-power-off"></i></span>
                         <span class="item">Logout</span>
                     </a>
@@ -46,6 +47,14 @@
         x.style.display = "none";
       }
     }
+
+    function on() {
+        document.getElementById("overlay").style.display = "block";
+      }
+      
+    function off() {
+        document.getElementById("overlay").style.display = "none";
+      }
 </script>
 
 {% endblock content %} 

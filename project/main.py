@@ -1,4 +1,3 @@
-from pyexpat.errors import messages
 from flask import Flask, redirect, render_template, url_for, request, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_required, login_user , logout_user, login_manager, LoginManager, current_user
@@ -51,6 +50,25 @@ class Student(UserMixin, db.Model):
 class teacher(UserMixin, db.Model):
     id=db.Column(db.String, primary_key=True, unique=True)
     password=db.Column(db.String(1000))
+
+class timetable(db.Model):
+    Day=db.Column(db.Integer, primary_key=True)
+    DayName=db.Column(db.String(10), unique=True)
+    P1=db.Column(db.String(10))
+    P2=db.Column(db.String(10))
+    P3=db.Column(db.String(10))
+    P4=db.Column(db.String(10))
+    P5=db.Column(db.String(10))
+    P6=db.Column(db.String(10))
+    P7=db.Column(db.String(10))
+    sem=db.Column(db.Integer)
+    sec=db.Column(db.Integer)
+
+    def __init__(self, subject):
+ 
+        self.P1 = subject
+        self.sem = 5
+        self.sec = 2
 
 @app.route("/")
 def home():
@@ -107,21 +125,29 @@ def teaRegister():
 @app.route("/stuLogin", methods=['POST', 'GET'])
 def stuLogin():
     if request.method=="POST":
-        usn=request.form.get('usn')
+        id=request.form.get('usn')
         password=request.form.get('password')
-        user=Student.query.filter_by(id=usn).first()
+        user=Student.query.filter_by(id=id).first()
         if user and check_password_hash(user.password, password):
             login_user(user)
-            session['id'] = user.id
-            timetable = mydb.cursor()
-            timetable.execute("SELECT * FROM timetable") 
-            myresult = timetable.fetchall()
-            flash(myresult, 'tt')
-            subdetails = mydb.cursor()
-            subdetails.execute("SELECT * FROM subject")
-            subresult = subdetails.fetchall()
-            flash(subresult, 'subject')
-            return render_template("stuDashboard.html")
+            session['user'] = id
+            # timetable = mydb.cursor()
+            # timetable.execute("SELECT * FROM timetable") 
+            # myresult = timetable.fetchall()
+            # flash(myresult, 'tt')
+            # subdetails = mydb.cursor()
+            # subdetails.execute("SELECT * FROM subject")
+            # subresult = subdetails.fetchall()
+            # flash(subresult, 'subject')
+            # return render_template("stuDashboard.html")
+            tt = mydb.cursor()
+            tt.execute("SELECT DayName, P1, P2, P3, P4, P5, P6, P7 FROM timetable") 
+            myresult = tt.fetchall()
+            tt.execute("SELECT subcode, subname, faculty FROM subject;")
+            subresult = tt.fetchall()
+            tt.close()
+            return render_template("stuDashboard.html", headings=headings, tt=myresult, subject=subresult)
+
         else:
             flash('Invalid Credentials. Please Try Again.', 'student')
             return render_template("index.html")
@@ -137,17 +163,8 @@ def teaLogin():
         if user and check_password_hash(user.password, password):
             login_user(user)
             session['user']=id
-            # timetable = mydb.cursor()
-            # timetable.execute("SELECT * FROM timetable") 
-            # myresult = timetable.fetchall()
-            # flash(myresult, 'tt')
-            # subdetails = mydb.cursor()
-            # subdetails.execute("SELECT * FROM subject")
-            # subresult = subdetails.fetchall()
-            # flash(subresult, 'subject')
-            # timetable.close()
             return redirect(url_for('teaDashboard'))
-            # return render_template("teaDashboard.html")
+            
         else:
             flash('Invalid Credentials. Please Try Again.', 'teacher')
             return redirect(url_for('home'))
@@ -199,19 +216,14 @@ def editday(user):
         period=request.form.get('period')
         subject=request.form.get('subject')
         db.engine.execute(f"UPDATE `timetable` SET `{period}` = '{subject}' WHERE `timetable`.`DayName` = '{day}';")
+        update = timetable.query.get(1)
+        update.P1 = request.form.get('subject')
+        new_Data = timetable(subject)
+        # db.session.add(new_Data)
+        # db.session.refresh(user)
+        db.session.commit()
+        # db.session.regenerate()
         return redirect(url_for('teaDashboard'))
-        #return redirect("teaDashboard")
-        # tt = mydb.cursor()
-        # tt.execute("SELECT * FROM timetable") 
-        # myresult = tt.fetchall()
-        # flash(myresult, 'tt')
-        # tt.close()
-        # subdetails = mydb.cursor()
-        # subdetails.execute("SELECT * FROM subject")
-        # subresult = subdetails.fetchall()
-        # flash(subresult, 'subject')
-        # subdetails.close()
-        # return render_template("teaDashboard.html")
 
     else:
         day=request.form.get('day')
@@ -232,11 +244,23 @@ def teaDashboard():
     tt.close()
     return render_template("teaDashboard.html", headings=headings, tt=myresult, subject=subresult)
 
+# Student Dashbaord
+@app.route('/stuDashboard')
+@login_required
+def stuDashboard():
+    tt = mydb.cursor()
+    tt.execute("SELECT DayName, P1, P2, P3, P4, P5, P6, P7 FROM timetable") 
+    myresult = tt.fetchall()
+    tt.execute("SELECT subcode, subname, faculty FROM subject;")
+    subresult = tt.fetchall()
+    tt.close()
+    return render_template("stuDashboard.html", headings=headings, tt=myresult, subject=subresult)
+
 # Logout
 @app.route('/logout')
 @login_required
 def logout():
-    #session.pop('user')
+    session.clear()
     logout_user()
     return redirect(url_for('home'))
 
