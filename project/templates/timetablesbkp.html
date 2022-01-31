@@ -1,0 +1,506 @@
+<!-- Version 2 -->
+
+{% block content %} 
+<body>
+    <br>
+    <table>
+        <tr style="height:80px">
+            <th> </th>
+            <th>09:00 AM - 09:55 AM</th>
+            <th>09:55 AM - 10:50 AM</th>
+            <th>11:10 AM - 12:05 PM</th>
+            <th>12:05 PM - 01:00 PM</th>
+            <th>01:45 PM - 02:40 PM</th>
+            <th>02:40 PM - 03:35 PM</th>
+            <th>03:35 PM - 04:30 PM</th>
+        </tr>
+
+        <tr>
+            <td> <day> Monday </day> </td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[0][2]}}
+            {% endfor %}
+            {% endwith %}</td>
+
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[0][3]}}
+                {% endfor %}
+            {% endwith %}</td>
+
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[0][4]}}
+                {% endfor %}
+            {% endwith %}</td>
+
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[0][5]}}
+                {% endfor %}
+            {% endwith %}</td>
+
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[0][6]}}
+                {% endfor %}
+            {% endwith %}</td>
+
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[0][7]}}
+                {% endfor %}
+            {% endwith %}</td>
+            
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[0][8]}}
+                {% endfor %}
+            {% endwith %}</td>
+        </tr>
+
+        <tr>
+            <td><day> Tuesday </day></td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[1][2]}}
+            {% endfor %}
+            {% endwith %}</td>
+
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[1][3]}}
+                {% endfor %}
+            {% endwith %}</td>
+
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[1][4]}}
+                {% endfor %}
+            {% endwith %}</td>
+
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[1][5]}}
+                {% endfor %}
+            {% endwith %}</td>
+
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[1][6]}}
+                {% endfor %}
+            {% endwith %}</td>
+
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[1][7]}}
+                {% endfor %}
+            {% endwith %}</td>
+
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[1][8]}}
+                {% endfor %}
+            {% endwith %}</td>       
+        </tr>
+
+        <tr>
+            <td><day> Wednesday </day></td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[2][2]}}
+            {% endfor %}
+            {% endwith %}</td>
+
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[2][3]}}
+                {% endfor %}
+            {% endwith %}</td>
+
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[2][4]}}
+                {% endfor %}
+            {% endwith %}</td>
+            
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[2][5]}}
+                {% endfor %}
+            {% endwith %}</td>
+            
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[2][6]}}
+                {% endfor %}
+            {% endwith %}</td>
+            
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[2][7]}}
+                {% endfor %}
+            {% endwith %}</td>
+            
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[2][8]}}
+                {% endfor %}
+            {% endwith %}</td>
+        </tr>
+
+        <tr>
+            <td><day> Thursday </day></td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[3][2]}}
+            {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[3][3]}}
+                {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[3][4]}}
+                {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[3][5]}}
+                {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[3][6]}}
+                {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[3][7]}}
+                {% endfor %}
+            {% endwith %}</td> 
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[3][8]}}
+                {% endfor %}
+            {% endwith %}</td> 
+        </tr>
+
+        <tr>
+            <td><day> Friday </day></td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[4][2]}}
+            {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[4][3]}}
+                {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[4][4]}}
+                {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[4][5]}}
+                {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[4][6]}}
+                {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[4][7]}}
+                {% endfor %}
+            {% endwith %}</td> 
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[4][8]}}
+                {% endfor %}
+            {% endwith %}</td> 
+        </tr>
+
+        <tr>
+            <td><day> Saturday </day></td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[5][2]}}
+            {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[5][3]}}
+                {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[5][4]}}
+                {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[5][5]}}
+                {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[5][6]}}
+                {% endfor %}
+            {% endwith %}</td>
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[5][7]}}
+                {% endfor %}
+            {% endwith %}</td> 
+            <td>{% with messages = get_flashed_messages(category_filter=["tt"]) %}
+                {% for message in messages %}
+                    {{message[5][8]}}
+                {% endfor %}
+            {% endwith %}</td> 
+        </tr>
+            
+    </table><br><br>
+
+    <!-- Subject Button -->
+    <div style="margin-right: 18cm;">
+    <button onclick="subdetails()" class="login-submit" style="font-size: large">Subject Details</button><br><br>
+    </div>
+
+    <div id="myDIV" style="display: none;">
+        <table style="width: 22cm; margin-right: 3cm;">
+            <tr style="height:60px">
+                <th> Subject Code </th>
+                <th> Subject </th>
+                <th> Faculty </th>
+            </tr>
+
+            <tr>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[0][1]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[0][2]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[0][3]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+            </tr>
+
+            <tr>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[1][1]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[1][2]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[1][3]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+            </tr>
+
+            <tr>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[2][1]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[2][2]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[2][3]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+            </tr>
+
+            <tr>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[3][1]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[3][2]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[3][3]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+            </tr>
+
+            <tr>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[4][1]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[4][2]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[4][3]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+            </tr>
+
+            <tr>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[5][1]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[5][2]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[5][3]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+            </tr>
+
+            <tr>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[6][1]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[6][2]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[6][3]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+            </tr>
+
+            <tr>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[7][1]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[7][2]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[7][3]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+            </tr>
+
+            <tr>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[8][1]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[8][2]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+                <td> 
+                    {% with messages = get_flashed_messages(category_filter=["subject"]) %}
+                    {% for message in messages %}
+                        {{message[8][3]}}
+                    {% endfor %}
+                    {% endwith %} 
+                </td>
+            </tr>
+        
+        </table><br><br>
+    </div>
+
+    
+</body>
+{% endblock content %}

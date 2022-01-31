@@ -56,14 +56,20 @@ class teacher(UserMixin, db.Model):
 def home():
     return render_template("index.html")
 
+
+headings = ("Day", "09:00 AM - 09:55 AM", "09:55 AM - 10:50 AM", "11:10 AM - 12:05 PM", "12:05 PM - 01:00 PM", "01:45 PM - 02:40 PM", "02:40 PM - 03:35 PM", "03:35 PM - 04:30 PM")
+
+
 # Testing whether DB is connected or not
 @app.route("/test")
 def test():
-    timetable = mydb.cursor()
-    timetable.execute("SELECT * FROM timetable") 
-    myresult = timetable.fetchall()
-    flash(myresult)
-    return render_template("test.html")
+    classtt = mydb.cursor()
+    classtt.execute("SELECT DayName, P1, P2, P3, P4, P5, P6, P7 FROM timetable;") 
+    myresult = classtt.fetchall()
+    classtt.execute("SELECT subcode, subname, faculty FROM subject;")
+    subresult = classtt.fetchall()
+    classtt.close()
+    return render_template("test.html", headings=headings, tt=myresult, subject=subresult)
 
 @app.route("/registerPage", methods=['POST', 'GET'])
 def registerPage():
@@ -223,16 +229,12 @@ def editday(user):
 @login_required
 def teaDashboard():
     tt = mydb.cursor()
-    tt.execute("SELECT * FROM timetable") 
+    tt.execute("SELECT DayName, P1, P2, P3, P4, P5, P6, P7 FROM timetable") 
     myresult = tt.fetchall()
-    flash(myresult, 'tt')
+    tt.execute("SELECT subcode, subname, faculty FROM subject;")
+    subresult = tt.fetchall()
     tt.close()
-    subdetails = mydb.cursor()
-    subdetails.execute("SELECT * FROM subject")
-    subresult = subdetails.fetchall()
-    flash(subresult, 'subject')
-    subdetails.close()
-    return render_template("teaDashboard.html", messages=myresult)
+    return render_template("teaDashboard.html", headings=headings, tt=myresult, subject=subresult)
 
 # Logout
 @app.route('/logout')
