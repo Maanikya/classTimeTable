@@ -160,30 +160,26 @@ def adminLogin():
         password=request.form.get('password')
         if (aid==params['username'] and password==params['password']):
             session['user']=aid
-            timetable = mydb.cursor()
-            timetable.execute("SELECT * FROM timetable") 
-            myresult = timetable.fetchall()
-            flash(myresult, 'tt')
-            subdetails = mydb.cursor()
-            subdetails.execute("SELECT * FROM subject")
-            subresult = subdetails.fetchall()
-            flash(subresult, 'subject')
-            return render_template("admin.html")
+            tt = mydb.cursor()
+            tt.execute("SELECT DayName, P1, P2, P3, P4, P5, P6, P7 FROM timetable") 
+            myresult = tt.fetchall()
+            tt.execute("SELECT subcode, subname, faculty FROM subject;")
+            subresult = tt.fetchall()
+            tt.close()
+            return render_template("admin.html", headings=headings, tt=myresult, subject=subresult)
             
         else:
             flash('Invalid Credentials. Please Try Again.', 'teacher')
             return redirect(url_for('home'))
     
     elif('user' in session):
-        timetable = mydb.cursor()
-        timetable.execute("SELECT * FROM timetable") 
-        myresult = timetable.fetchall()
-        flash(myresult, 'tt')
-        subdetails = mydb.cursor()
-        subdetails.execute("SELECT * FROM subject")
-        subresult = subdetails.fetchall()
-        flash(subresult, 'subject')
-        return render_template("admin.html")
+        tt = mydb.cursor()
+        tt.execute("SELECT DayName, P1, P2, P3, P4, P5, P6, P7 FROM timetable") 
+        myresult = tt.fetchall()
+        tt.execute("SELECT subcode, subname, faculty FROM subject;")
+        subresult = tt.fetchall()
+        tt.close()
+        return render_template("admin.html", headings=headings, tt=myresult, subject=subresult)
 
 # Edit
 @app.route('/edit/<user>')
