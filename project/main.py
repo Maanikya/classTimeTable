@@ -190,7 +190,7 @@ def edit(user):
 
 
 # Edit Day
-@app.route('/editday/<user>', methods=['GET', 'POST'])
+@app.route('/edit/editday/<user>', methods=['GET', 'POST'])
 def editday(user):
     if user=='teacher':
         day=request.form.get('day')
@@ -232,7 +232,7 @@ def teaDashboard():
     subresult = subdetails.fetchall()
     flash(subresult, 'subject')
     subdetails.close()
-    return render_template("teaDashboard.html")
+    return render_template("teaDashboard.html", messages=myresult)
 
 # Logout
 @app.route('/logout')
